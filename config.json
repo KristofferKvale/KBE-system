@@ -1,0 +1,14 @@
+{"config": [
+  {"folders": [
+    {"HOME": "C:/Users/kri_k/PycharmProjects/KBE-system/KBE-system"},
+    {"DFAs": "C:/Users/kri_k/PycharmProjects/KBE-system/KBE-system/Customer/Chairs"},
+    {"Templates": [
+      {"Chair": "C:/Users/kri_k/PycharmProjects/KBE-system/KBE-system/Customer/Chairs/templates/My_Chair_template.dfa"}
+    ]}
+  ]},
+  {"connection": [
+    {"HOST": "127.0.0.1"},
+    {"PORT":  1234},
+    {"DATABASE_PATH":  "C:/Users/kri_k/PycharmProjects/KBE-system/KBE-system/Server/db.sqlite"}
+  ]}
+]}
