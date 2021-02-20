@@ -17,8 +17,10 @@ HOME_FOLDER = config["config"][0]["folders"][0]["HOME"]
 
 # TODO: Move to setup or config file
 HOST_NAME = config["config"][1]["connections"][0]["HOST"]
-PORT_NUMBER = 1234  # Maybe set this to 1234
-DFAPATH = HOME_FOLDER + "\\Customer\\Chairs"
+PORT_NUMBER = config["config"][1]["connections"][0]["PORT"]
+DFAPATH = config["config"][0]["folders"][1]["DFAs"]
+TEMPLATES = config["config"][0]["folders"][2]["Templates"]
+TEMPLATE_CHAIR = config["config"][0]["folders"][2]["Templates"][0]["Chair"]
 
 
 # Check if chairs folder and template for chairs is set up correctly
@@ -26,16 +28,16 @@ if not path.exists(DFAPATH):
     print("Error: DFA Path not correct or not existing.")
     quit()
 
-if not path.exists(DFAPATH + "\\templates"):
+if not path.exists(TEMPLATES):
     print("Error: Could not find templates folder in the chosen DFA folder")
     quit()
 
-if not path.exists(DFAPATH + "\\templates\\My_Chair_template.dfa"):
+if not path.exists(TEMPLATE_CHAIR):
     print("Error: Template chair file not found or has the wrong name.")
     quit()
 
 
-FILE_TEMPLATE_CHAIR = open(DFAPATH + "\\templates\\My_Chair_template.dfa", "r")
+FILE_TEMPLATE_CHAIR = open(TEMPLATE_CHAIR, "r")
 FILE_TEMPLATE_CHAIR_CONTENT = FILE_TEMPLATE_CHAIR.read()
 FILE_TEMPLATE_CHAIR.close()
 
@@ -139,8 +141,6 @@ class MyHandler(BaseHTTPRequestHandler):
         file_current_chair = open(DFAPATH + f"My_Chair_{str(datetime_now).replace(' ', '')}.dfa", "w")
         file_current_chair.write(file_content_out)
         file_current_chair.close()
-
-        # TODO: Change dfaPath to /Customer/chairs
 
         # Add entry to database
         db_coms.add_chair(db_connection, file_current_chair, datetime_now)
