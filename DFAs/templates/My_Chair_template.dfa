@@ -1,0 +1,70 @@
+#! NX/KF 4.0
+DefClass: Dinner_Chair (ug_base_part);
+    #Parameters for the chair
+    (number parameter) sitting_height: <PARAM_HEIGHT>;
+    (number parameter) back_angle:  <PARAM_ANGLE>;
+    
+
+seat_width: 500;
+seat_depth: 500;
+seat_height: 50;
+leg_width: 50;
+leg_depth: 50;
+back_depth: 50;
+back_height: 750;
+
+
+
+(child) legFR: 
+    {
+        class, ug_block;
+        Origin, Point(-(seat_width/2),(seat_depth/2),0);
+        length, leg_depth:;
+        width, leg_width:;
+        height, sitting_height:-seat_height:;
+    };
+
+(child) legFL: 
+    {
+        class, ug_block;
+        Origin, Point((seat_width/2),(seat_depth/2),0);
+        length, leg_depth:;
+        width, leg_width:;
+        height, sitting_height:-seat_height:;
+    };
+
+(child) legBR: 
+    {
+        class, ug_block;
+        Origin, Point(-(seat_width/2),-(seat_depth/2),0);
+        length, leg_depth:;
+        width, leg_width:;
+        height, sitting_height:-seat_height:;
+    };
+
+(child) legBL: 
+    {
+        class, ug_block;
+        Origin, Point((seat_width/2),-(seat_depth/2),0);
+        length, leg_depth:;
+        width, leg_width:;
+        height, sitting_height:-seat_height:;
+    };
+
+(child) seat: 
+    {
+        class, ug_block;
+        Origin, Point(-(seat_width/2),(seat_depth/2),(sitting_height-seat_height));
+        length, seat_depth:;
+        width, seat_width:;
+        height, seat_height:;
+    };
+
+(child) back: 
+    {
+        class, ug_block;
+        Origin, Point(-(seat_width/2),-(seat_depth/2),(sitting_height));
+        length, back_depth;
+        width, seat_width;
+        height, sitting_height:-seat_height:;
+    };
